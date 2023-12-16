@@ -28,6 +28,14 @@ COPY ./build/usr_lib/. /usr/lib
 COPY ./build/usr_local_lib/. /usr/local/lib
 COPY ./build/usr_lib_pulseaudio/. /usr/lib/pulseaudio
 
+RUN chmod 775 /usr/local/nginx/sbin/nginx && \
+    chmod 775 /usr/local/bin/ffmpeg && \
+    chmod 775 /usr/local/bin/ffprobe
+
+RUN chmod +x /usr/local/nginx/sbin/nginx && \
+    chmod +x /usr/local/bin/ffmpeg && \
+    chmod +x /usr/local/bin/ffprobe
+
 # Add NGINX path, config and static files.
 ENV PATH "${PATH}:/usr/local/nginx/sbin"
 COPY ./build/nginx.conf /etc/nginx/nginx.conf.template

@@ -1,4 +1,4 @@
-# rtmp-ffmpeg-rockchip-arm32v7-fast
+# rtmp-ffmpeg-rockchip-arm32v7-fast-fast
 
 Same as rtmp-ffmpeg-rockchip-arm32v7 but using pre-compiled libs.
 
@@ -25,9 +25,9 @@ https://github.com/alfg/docker-nginx-rtmp
 - install git and then...
 
 ````
-git clone https://github.com/primoitt83/rtmp-ffmpeg-rockchip-arm32v7.git
+git clone https://github.com/primoitt83/rtmp-ffmpeg-rockchip-arm32v7-fast.git
 
-cd rtmp-ffmpeg-rockchip-arm32v7
+cd rtmp-ffmpeg-rockchip-arm32v7-fast
 
 docker-compose up -d
 ````
@@ -37,9 +37,9 @@ docker-compose up -d
 Yes, but you need to build image first then use compose:
 
 ````
-git clone https://github.com/primoitt83/rtmp-ffmpeg-rockchip-arm32v7.git
+git clone https://github.com/primoitt83/rtmp-ffmpeg-rockchip-arm32v7-fast.git
 
-cd rtmp-ffmpeg-rockchip-arm32v7
+cd rtmp-ffmpeg-rockchip-arm32v7-fast
 
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
@@ -55,7 +55,7 @@ With nginx-rtmp image ready, you can shoot ffmpeg from it like this:
 Remember to change image name as need it:
 
 ````
-armv32v7: rtmp-ffmpeg-rockchip-arm32v7_rtmp:latest
+armv32v7: rtmp-ffmpeg-rockchip-arm32v7-fast_rtmp:latest
 
 x86: rtmp:rockchip
 ````
@@ -66,7 +66,7 @@ docker run -i --rm \
     --cap-add=SYS_ADMIN \
     -v $PWD:/tmp \
     --name test \
-    rtmp-ffmpeg-rockchip-arm32v7_rtmp:latest \
+    rtmp-ffmpeg-rockchip-arm32v7-fast_rtmp:latest \
     ffmpeg -buildconf
 ````
 
@@ -79,7 +79,7 @@ docker run -i --rm \
     --cap-add=SYS_ADMIN \
     -v $PWD:/tmp \
     --name test \
-    rtmp-ffmpeg-rockchip-arm32v7_rtmp:latest \
+    rtmp-ffmpeg-rockchip-arm32v7-fast_rtmp:latest \
     ffmpeg -y -c:v h264 -i /tmp/BBB.mp4 \
     -an \
     -c:v libx264 -vf scale=w=640:h=360 \
@@ -95,7 +95,7 @@ docker run -i --rm \
     --cap-add=SYS_ADMIN \
     -v $PWD:/tmp \
     --name test \
-    rtmp-ffmpeg-rockchip-arm32v7_rtmp:latest \
+    rtmp-ffmpeg-rockchip-arm32v7-fast_rtmp:latest \
     ffmpeg -re -stream_loop -1 -i /tmp/BBB.mp4 \
     -c: copy -tune zerolatency \
     -f flv rtmp://192.168.5.99:1935/live/bbb
@@ -128,7 +128,7 @@ docker run -i --rm \
         [ -e "/dev/$dev" ] && echo " --device /dev/$dev"; \
     done` \
     -v "$PWD":/tmp \
-    rtmp-ffmpeg-rockchip-arm32v7_rtmp:latest \
+    rtmp-ffmpeg-rockchip-arm32v7-fast_rtmp:latest \
     ffmpeg -y -hwaccel drm -hwaccel_device /dev/dri/renderD128 \
     -f alsa -thread_queue_size 12000 -i sysdefault:CARD=CameraB409241 \
     -f v4l2 -thread_queue_size 12000 -i /dev/video0 \
