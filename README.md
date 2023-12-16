@@ -1,4 +1,4 @@
-# rtmp-ffmpeg-rockchip-arm32v7-fast-fast
+# rtmp-ffmpeg-rockchip-arm32v7-fast
 
 Same as rtmp-ffmpeg-rockchip-arm32v7 but using pre-compiled libs.
 
