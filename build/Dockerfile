@@ -28,6 +28,7 @@ COPY ./build/usr_lib/. /usr/lib
 COPY ./build/usr_local_lib/. /usr/local/lib
 COPY ./build/usr_lib_pulseaudio/. /usr/lib/pulseaudio
 
+## Set permissions
 RUN chmod 775 /usr/local/nginx/sbin/nginx && \
     chmod 775 /usr/local/bin/ffmpeg && \
     chmod 775 /usr/local/bin/ffprobe
@@ -35,6 +36,10 @@ RUN chmod 775 /usr/local/nginx/sbin/nginx && \
 RUN chmod +x /usr/local/nginx/sbin/nginx && \
     chmod +x /usr/local/bin/ffmpeg && \
     chmod +x /usr/local/bin/ffprobe
+
+## Create nginx logs
+RUN touch /usr/local/nginx/logs/access.log && \
+    touch /usr/local/nginx/logs/error.log
 
 # Add NGINX path, config and static files.
 ENV PATH "${PATH}:/usr/local/nginx/sbin"
