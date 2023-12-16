@@ -37,10 +37,6 @@ RUN chmod +x /usr/local/nginx/sbin/nginx && \
     chmod +x /usr/local/bin/ffmpeg && \
     chmod +x /usr/local/bin/ffprobe
 
-## Create nginx logs
-RUN touch /usr/local/nginx/logs/access.log && \
-    touch /usr/local/nginx/logs/error.log
-
 # Add NGINX path, config and static files.
 ENV PATH "${PATH}:/usr/local/nginx/sbin"
 COPY ./build/nginx.conf /etc/nginx/nginx.conf.template
